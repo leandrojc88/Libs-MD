@@ -14,7 +14,10 @@
 ## JavaScript
 
 - `Chart.js` [chart.js](https://chartjs.org) ->Librería para crear Gráficos 
+- `Atomic Design` https://bradfrost.com/blog/post/atomic-web-design/ 
 
 ## APIs
 
 - `postman`  [https://web.postman.co](https://web.postman.co/) -> herramienta para probar las Apis y permite documentarlas
+- `Any-api` https://any-api.com/  mas de 1400 apis para consultar de cualquier tipo(deportes , etc)
+- `JSONPlaseholder`  https://jsonplaceholder.typicode.com/  probar Apis
