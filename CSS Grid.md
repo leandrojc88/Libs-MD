@@ -58,15 +58,15 @@
   }
   ```
 
-- `min-content`   que mida lo minimo de contenido posible
+- `min-content`   que mida lo mínimo de contenido posible
 
   - `grid-template-columns: min-content`
 
-- `max-content`  que mida lo maximo de contenido posible
+- `max-content`  que mida lo máximo de contenido posible
 
-- `fit-content(400px)` usa el `min-content` como minimo y como `max-content` los 400px
+- `fit-content(400px)` usa el `min-content` como mínimo y como `max-content` los 400px
 
-- `minmax(200px, 300px)` minimo y maximo tamaño
+- `minmax(200px, 300px)` mínimo y máximo tamaño
 
 - `auto-fit`  crea (n)tracks automaticas de un tamaño (x) mientras exista contenido
 

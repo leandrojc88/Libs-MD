@@ -187,17 +187,33 @@ git log --pretty=format:
 ### Diferencias 
 
 `git diff [id-commit]` compara commit actual vs [id-commit]
-`git diff [id-commit1] [id-commit2]` compara [id-commit1] actual vs [id-commit2] 
+`git diff [id-commit1] [id-commit2]` compara [id-commit1] vs [id-commit2] 
 
 ### Reset
-para modificar y descaptar algun commit
+para modificar y descaptar algún commit
 
 - `git reset HEAD file.txt` remueve del Starging el fichero file.txt y lo pasa a Working
-- Soft  
- `git reset --soft [id-commit]` resetea al id-commit pero mantiene los ficheros en el Starging listos para hacerles nuevamente commit
 
+- Soft  
+ `git reset --soft [id-commit]` resetea al id-commit pero mantiene los ficheros en el Starging listos para hacerles nuevamente commit, el id-commit debe ser al que vamos posicionarnos y de hay en adelante se eliminaran los cambios
+
+ ```
+ b7164ba5 (HEAD -> master) release v1.1.0
+ 74071953 update for v1.1.0
+ d222f047 (updates, dev) fixed resueltos
+ 7244a61f Store Modularizardo, encapsulamiento dentro de {make}
+ 14c28681 Atualizacion de la estructura de VST y incorporacion de Unidades
+ 7561525f install vuelidate and create .bats
+ 0de59a20 Registro de Componenetes *Base* en la instancia de Vue
+ 039394dc mejora - comportamiento de las Rutas Anidadas 
+ 7488251d start developement v1.0.1
+ ```
+ 
+ `git reset --soft d222f047` => nos lleva a la linea de tiempo en el commit(d222f047 (updates, dev) fixed resueltos) y eliminar el resto de commit por encima (b7164ba5, 74071953)
+ 
 - mixed
 	`git reset --mixed [id-commit]`	resetea al id-commit y pone los ficheros en el Working hay que `add` y despues commit
+	
 - hard 
 `git reset --hars [id-commit]` resetea al id-commit y se elimina todo lo q sea posterior al mismo
 
@@ -238,7 +254,7 @@ para modificar y descaptar algun commit
  `git merge nombre-rama`  
   ubicarce en la rama que va a alar la otra rama 
   
-  - ejemplo: para unir la rama *feature1* a *desarrollo* devemos ubicarnos en **desarrollo** y acer `merge` a feature 1
+  - ejemplo: para unir la rama *feature1* a *desarrollo* debemos ubicarnos en **desarrollo** y hacer `merge` a feature 1
 
 ```git
 	git checkout desarrollo

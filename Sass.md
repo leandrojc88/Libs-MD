@@ -46,6 +46,7 @@ _nombre.sass
 ### Tipo dato
 
 - `String` con y sin `''`
+	
 	```scss
 	$string : 'Leo'
 	$string : Leo
@@ -285,8 +286,8 @@ Anidado de selectores y propiedades, usar ***1 nivel de anidamiento no mas !!!**
 
 ---
 ## Mixins  
-trozo de codigo reutilizable tipo funciones
-puede devolver trozo de codigo, css, valor las `funciones` solo retorna un valor
+trozo de código reutilizable tipo funciones
+puede devolver trozo de código, css, valor las `funciones` solo retorna un valor
 
 - parametros
 	 	```scss
@@ -516,17 +517,17 @@ en la terminal VScode
   	- `SMACSS`  
 
     		`base`  -> los estilos aplicados a etiquetas html(body,p,a,div) es cini tu normalize  
-    
+   
     ​		`modulos` -> componentes reutilizables (menus, botones, tarjetas etc)  
-    
+   
     ​		`layout` -> geometria y posicion de los elementos (donde esta todo arriba abajo derecha izq)  
-    
+   
     ​		`theme` -> tipografia y color la identidad visual de la marca o empresa  
-    
+   
     ​		`estado` -> elementos q cambian (animaciones ocultan trasforms)
-    
+   
      -  `ITCSS` 
-  
+    
      -  `7en1` -> 7 carpetas y un scss
   
       

@@ -10,6 +10,17 @@
 
 `virtual DOM`: copia exacta del DOM en memoria, que funciona para conocer el estado de la paguina y que parte del DOM a cambiado en el documento y de esta manera rendereza solo esa parte de la jerarquía de elementos en el DOM real
 
+## Tips
+
+- `dangerouslySetInnerHTML` is React’s replacement for using innerHTML in the browser DOM
+
+  ```html
+  <div dangerouslySetInnerHTML={ createMarkup() } />;
+  <div dangerouslySetInnerHTML={{ __html: varible }} />;
+  ```
+
+  
+
 ## Instalar
 
 ### Pasos
@@ -138,6 +149,37 @@ function App() {
 export default App; // permite exportar para su uso
 ```
 
+### Exportar
+
+fichero `personas.js` contiene un arreglo de personas y lo exporta
+
+```javascript
+export defoult [
+	{
+		nombre: "Leo",
+		edad: 31
+	},
+	{
+		nombre: "Yubi",
+		edad: 31
+	},
+	{
+		nombre: "Aleida",
+		edad: 31
+	}
+]
+```
+
+usarlo
+
+```javascript
+import personasArray from './personas'
+// ejemplo de uso
+
+<ListaPersonas personas={personasArray}/>
+
+```
+
 ### Fragmentos
 
 se usa como padre para no ensuciar con `div`, no se renderiza en el navegador : `<Fragment>` o `<>`
@@ -162,7 +204,7 @@ function App() {
 }
 ```
 
-### Expreciones
+### {Expreciones}
 
 para escribir `javascript` en JSX con { js } y admite retornar componentes jsx y 
 
@@ -200,7 +242,7 @@ const url = "leo.png"
 
 ### Propiedades
 
-pueden recibir un parametro de tipo objeto con todas las propiedades
+pueden recibir un parámetro de tipo objeto con todas las propiedades
 
 `const Curso = param => {}` o `const Curso = ({title,descrip}) => {}` 
 
@@ -236,6 +278,25 @@ const Curso = ({title,descrip}) => {
 export default App; // permite exportar para su uso
 ```
 
+### Children
+
+es le contenido dentro de las etiquetas JSX de apertura y cierre <MyComponent> Children  </MyComponent>, puede ser contenido HTML, JSX, {JS} y otros Componentes
+
+```html
+<MyContainer>
+  <MyFirstComponent />
+  <MySecondComponent />
+</MyContainer>
+```
+
+se puede validar el valor del **Children**  con 
+
+```javascript
+propType = {
+	childer: PropTypes.object.isRequired // el valor son objetos compoenten por ejemplo
+}
+```
+
 ## Componentes
 
 > Estructura reutilizable pero no el contenido, porciones de código que se pueden reutilizar, un componente se pueden reutilizar uno dentro de otro	
@@ -250,7 +311,7 @@ export default App; // permite exportar para su uso
 - se inmporta en otro componente `import Curso from "./curso"`
 - utilizar `<Curso />`   o  `<Curso props:valor/>`
 
-**validar props (parametros)**
+### validar props (PropTypes)
 
 - validacion `props.imagen ? <img> imagen.png </img> : <p>no hay imagen </p>`
 
@@ -267,7 +328,7 @@ export default App; // permite exportar para su uso
     );
   }
   Curso.propTypes = {
-      title: PropTypes.string,
+      title: PropTypes.string.isRequired, // obligatorio
       descrip: PropTypes.string
   }
   
@@ -363,7 +424,7 @@ export default Formulario
 
 #### cambiar estados
 
-`this.setState(obj)` recibe un objeto el cual se encarga de cambiar los valores del estado del componente
+`this.setState(obj)` recibe un objeto el cual se encarga de cambiar los valores del estado del componente, cuando el estado cambia siempre se ejecuta el método *Render()* nuevamente
 
 se pueden utilizar los eventos js para manejar los estados
 
@@ -376,6 +437,10 @@ se pueden utilizar los eventos js para manejar los estados
 ```
 
 #### metodos y bind
+
+el `metodo.bind(this)` se utiliza para que **metodo** obtenga todo objeto **this** de la clase y tenga acceso a los métodos y propiedades de la misma
+
+utilizar  `handleMetodo` cuando sea para manejar los eventos js Ej: `handleOnClick(){}`
 
 ```javascript
 constructor(props){// 
@@ -410,7 +475,7 @@ describe el flujo de los métodos del **componente** cuando se realizan las acci
 
 ## Rutas
 
-> canal que distribuye las rutas de la aplicacion, usar libreria `React Routers` se escriben componentes para declarar las rutas en react, Escrir componentes para crear rutas
+> canal que distribuye las rutas de la aplicación, usar librería `React Routers` se escriben componentes para declarar las rutas en react, Escribir componentes para crear rutas
 
 ### instalar
 
@@ -444,6 +509,22 @@ se crea el componente `<Router>  <Router/>`  dentro los componentes `<Route past
   </Router>
 ```
 
+### Link
+
+se utiliza para crear enlaces en las rutas, no usa <a> al no ser para sitios externos
+
+```javascript
+import {Link} from  from "react-router-dom"
+
+const objLinks = {
+	url:"/home"
+}
+
+<Link to={objLinks.url}> Home <Link/>
+```
+
+
+
 ### parametros
 
 pasar parametros a las rutas :params en el path="" `<Route path="/cursos/:id" component={ Course } />  ` 
@@ -451,7 +532,7 @@ pasar parametros a las rutas :params en el path="" `<Route path="/cursos/:id" co
 leer los parametros
 
 ```javascript
-onst Course = ({ match }) => {
+const Course = ({ match }) => {
     const [comment, setComment] = useState("Sin comentarios")
     const course = useCourse(match.params.id) 
 }
@@ -513,7 +594,7 @@ export default Users
 
 ## Componentes de Orden Superior
 
-> height order Component - es una función que recibe un componente lo procesa con cierta lógica o validación y después retornar el componente ya procesado 
+> height Order Component - es una función que recibe un componente lo procesa con cierta lógica o validación y después retornar el componente ya procesado 
 
 nomenclatura
 

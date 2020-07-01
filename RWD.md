@@ -285,7 +285,7 @@ puntos de quiebre
 	getComputedStyle(elementDOM).getPropertyValue(--variable)
 	elementDOM.style.setProperty('--variable', 'Leandro')
 	```
-```
+```js
 	
 - `Media query JS`  
 solo cuando no se puede hacer en css, en casos q se tengan q hacer calculos

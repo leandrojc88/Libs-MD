@@ -107,6 +107,9 @@
 let arr = ['hola','este', 'curso',1]
 let [var1, var2, var3, var4] = arr
 
+objPersona = {noombre:"leo", edad:31}
+let {nombre = "LOKO", edad} = objPersona // asigna el valor "LOKO" por defecto en caso de q no exista en el objPersona
+
 c.log(var1) // return 'hola'
 c.log(var2) // return 'este'
 c.log(var3) // return 'curso'
