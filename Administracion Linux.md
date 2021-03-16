@@ -5,9 +5,17 @@
 ***UTIL: -- Instalar vim y zsh--***
 
 - zsh - es un plugin que te pinta en colores la consola con colores para las carpetas y archivos etc...
+
+  1. `sudo apt-get install zsh` para instalar el paquete
+
+  2. `wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh`  importante para instalar **omyzsh**
+
 - linux todo es un fichero (los directorios son ficheros especiales) por lo tanto cuando montamos unidades HHD lo toma como un fichero donde puede leer y escribir
+
 - los demon (demonios) son servicios que se levantan al reiniciarse el sistema de forma automática ejemplo ssh_config | sshd_config - la `d` identifica el demon 
+
 - siempre reiniciar el servicio para que tenga efecto la configuración
+
 - `&&` concatena comandos {comando1} && {comando2} && {comandoN}cuando termina el 1 se ejecuta el 2
 
 ## metodos de acceso ssh
@@ -24,7 +32,7 @@
 
 - `ssh -o TCPKeepAlive=yes -o ServerAliveInternal=100` para mantener vivo el server y no se caiga cada cierto tiempo
 
-## comandos básicos
+## >> comandos básicos
 
 > en ***/bin/*** están todos los vinarios que se pueden utilizar como comandos
 
@@ -372,15 +380,61 @@ el enlace simbolico entre estos directorios se hacen mnualmente
 > Linux Apache MySQL PHP
 
 1. install Apache `sudo apt-get install apache2`
+
 2. instalar MySQL `sudo apt-get instal mysql-server`
+
 3. instalar php `sudo apt-get install php7.0`
+
 4. instalar modulo de apache para php `sudo apt-get install libapache2-mod-php7.0`
+
 5. instalar modulo php para mysql `sudo apt-get install php7.0-mysql`  
+
 6. copiar proyecto a la direccion **/var/www/proyect**
+
 7. configurar los ficheros de conexion a base datos
+
 8. conectar base de datos `mysql -u root -p` -u para el ussuari, -p para poner el password
+
 9. crear base de datos `create database namebd` 
+
 10.  `use dbname` para seleccionar la base de datos
-11. `soureec backup.sql` para restaurar backup
+
+11. `source backup.sql` para restaurar backup
+
 12. `vim /etc/apache2/mods-available/dor.conf` poner el index.php al inicio de la lista
+
 13. `servicer apache2 restart`
+
+14. ```
+    wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh 
+    ```
+
+## Certificados SSL
+
+> certificado que autentica la identidad de un sitio web y cifra con tecnología SSL la información al servidor
+
+certificado SSL contiene:
+
+- Nombre del titular del certificado
+- Número de serie del certificado
+- una copia de la clave publica del titular del certificado
+- la firma digital de la autoridad que emite el certificado
+
+### instalar certificados Certbot + lets-encrypt
+
+1. `sudo add-apt-repository ppa:certbot/certbot` installar cerbot
+
+2. `sudo apt install python-certbot-apache` modulo python para apache de certbot
+
+3. **cd /etc/apache2/sites-available/** configurar el dominio|s, como vimos en la sesión de apache con todos los pasos
+
+4. opcional (sudo ufw status) para verificar firewall `sudo ufw allow 'Apache Full'`  `sudo ufw delete allow 'Apache'`
+
+5. `sudo certbot --apache -d nuevodominio.com -d www.nuevodominio.com`
+
+   `sudo certbot --apache -d premium.nuevodominio.com`  obtener los certificados SSL precionar 2 si deseamos la redirecion de www a no-www
+
+6. `sudo certbot renew --dry-run`  verificar la renovación automática de Certbot
+
+
+
