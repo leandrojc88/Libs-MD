@@ -20,7 +20,7 @@ configuracion para distintos repocitorios de forma local *es necesario estar den
 ### propiedades
 
 - nombre: `git config --global user.name 'leandro'`  
-- correo: `git config --global user.emal leandrojc88@gmail.com` 
+- correo: `git config --global user.email leandrojc88@gmail.com` 
 - editor: `git config --global core.editor vim`  
 
 ### listar las config
@@ -208,9 +208,9 @@ para modificar y descaptar algún commit
  039394dc mejora - comportamiento de las Rutas Anidadas 
  7488251d start developement v1.0.1
  ```
- 
+
  `git reset --soft d222f047` => nos lleva a la linea de tiempo en el commit(d222f047 (updates, dev) fixed resueltos) y eliminar el resto de commit por encima (b7164ba5, 74071953)
- 
+
 - mixed
 	`git reset --mixed [id-commit]`	resetea al id-commit y pone los ficheros en el Working hay que `add` y despues commit
 	
@@ -373,7 +373,20 @@ para enviar los solicitar q se acepten los camios
 
 > `[ ] Frontend... significa checkbox markdown`
 
+## GITLAB
+
+#### error de credenciales en windows
+
+Try below solution which works for me:
+
+1. Go to Windows **Credential Manager**. This is done in a EN-US Windows by pressing the Windows Key and typing 'credential'. In other localized Windows variants you need to use the localized term (See comments for some examples).
+
+   *alternatively* you can use the shortcut `control /name Microsoft.CredentialManager` in the run dialog (WIN+R)
+
+2. Edit the git entry under Windows Credentials, replacing old password with the new one.
+
 ## Pages  
+
 host gratuitos solo para paguinas estaticas `Setting/GitHub Pages`
 - seleccionar la rama (master) o la q se designe
 - CNAME es para enlazar con dominios externos
