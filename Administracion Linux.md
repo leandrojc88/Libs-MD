@@ -436,5 +436,22 @@ certificado SSL contiene:
 
 6. `sudo certbot renew --dry-run`  verificar la renovación automática de Certbot
 
+### Configuracion Apache para `Symfony jwt :JWT Token not found`
 
+adicionar las lineas al final de la configuracion del **/etc/apache2/sites-aviables/apache-le-ssl.conf**
+
+```
+<Directory your_project_directory>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            Allow from all
+            Require all granted
+            RewriteEngine on
+            RewriteCond %{HTTP:Authorization} ^(.*)
+            RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+    </Directory>
+```
+
+service apache2 reload
 
