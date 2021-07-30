@@ -133,9 +133,9 @@ configurar dentro de .git ignore todos los ficheros que no se van a subir al **r
 	- ejemplo 2
 
    	![log](Git/log-p2.png)
-	
-        - WELCOME !!! : la linea eliminada (rojo)
-        + Nueva linea ... : linea nueva (verde)
+	 	
+   	  - WELCOME !!! : la linea eliminada (rojo)
+   	  + Nueva linea ... : linea nueva (verde)
 
 - `git log -p -#` muestra los ultimos # de commit 
   
@@ -215,7 +215,11 @@ para modificar y descaptar algún commit
 	`git reset --mixed [id-commit]`	resetea al id-commit y pone los ficheros en el Working hay que `add` y despues commit
 	
 - hard 
-`git reset --hars [id-commit]` resetea al id-commit y se elimina todo lo q sea posterior al mismo
+  `git reset --hars [id-commit]` resetea al id-commit y se elimina todo lo q sea posterior al mismo
+
+- reflog
+
+  `git reflog` muestra un historial incluyendo los puntos eliminados con el reset
 
 
 
@@ -327,8 +331,9 @@ Where `proxyuser` and `proxypwd` are your credentials, and `proxy.server.com:808
   -  C:\Users\username\ .ssh\ aprarecera el id_rsa y id_rsa.pub 
   -  `tail cd id_rsa.pub` y copiar todo el hash q retorne
 			
-			ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDnVhMlwsFWKxbpoX42f7bUXOzUppkhYQF8+aFdjhz2cc2yBPF68g+ZucjCaIU7oQnteSCXqnUgqh0Wy7Bg22/3PenkWwzZr+pjrMHtc/toWnUgA2q24m3hyGW7ANe0OTtOPLP80PLEoXsBCb34mb9WREemicUVX4sAXBurzaXdN/ipRUuO5qKR+5+6TgJkBLf6PaDFwmUVNlSbxbFhIAwxMapt1EE0Ms59D0CcwroCj1GMuFOSLHdV9ocIrUzzzy8DpIu6vM6CSRzPdxKNRe4E7ZrW7KkMrZOVKmG97B9t768v18O+iLcglCA09B7KyHDk0UV9Kz3rjx1y1PX8HID LEO@DESKTOP-C5E2ESP
-
+		
+	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDnVhMlwsFWKxbpoX42f7bUXOzUppkhYQF8+aFdjhz2cc2yBPF68g+ZucjCaIU7oQnteSCXqnUgqh0Wy7Bg22/3PenkWwzZr+pjrMHtc/toWnUgA2q24m3hyGW7ANe0OTtOPLP80PLEoXsBCb34mb9WREemicUVX4sAXBurzaXdN/ipRUuO5qKR+5+6TgJkBLf6PaDFwmUVNlSbxbFhIAwxMapt1EE0Ms59D0CcwroCj1GMuFOSLHdV9ocIrUzzzy8DpIu6vM6CSRzPdxKNRe4E7ZrW7KkMrZOVKmG97B9t768v18O+iLcglCA09B7KyHDk0UV9Kz3rjx1y1PX8HID LEO@DESKTOP-C5E2ESP
+  	
   - copiar el hash y pegarlo en Github / settings / SSH and GpG keys / crerar nuevos SSH una por cada pcs
 
  ## Interfas

@@ -6,7 +6,7 @@
 
 - zsh - es un plugin que te pinta en colores la consola con colores para las carpetas y archivos etc...
 
-  1. `sudo apt-get install zsh` para instalar el paquete
+  1. `sudo apt-get install zsh` para instalar el paquete `sudo yum install zsh` para el caso de Amazon Linux
 
   2. `wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh`  importante para instalar **omyzsh**
 
@@ -261,6 +261,7 @@ instalar
 - `sudo apt-get remove apache2` elimina apache
 - `sudo apt-get remove apache2-bin` elimina apache binarios
 - `apache2 -v` version
+- `sudo service apache2 status` saber si el apache esta corriendo
 - **/var/www/html** dierccion de los sitios de apache como en Xampp httpdoc
 
 ### modulos multiprocesamiento
@@ -314,7 +315,7 @@ procesar dos subdominios en un mismo servidor , repetir el proceso por cada subd
 
    `a2ensite name.domine.conf`  comando para ejecutar el ***name.domine.conf*** creado
 
-5. `service apache2 reload` para reiniciar el apache
+5. `  sudo systemctl reload apache2` para reiniciar el apache
 
 ## Nginx
 
@@ -397,13 +398,16 @@ el enlace simbolico entre estos directorios se hacen mnualmente
 
 9. crear base de datos `create database namebd` 
 
+   1. `show databases`
+   2. `show tables` 
+
 10.  `use dbname` para seleccionar la base de datos
 
 11. `source backup.sql` para restaurar backup
 
 12. `vim /etc/apache2/mods-available/dor.conf` poner el index.php al inicio de la lista
 
-13. `servicer apache2 restart`
+13. `service apache2 restart`
 
 14. ```
     wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh 
@@ -422,6 +426,8 @@ certificado SSL contiene:
 
 ### instalar certificados Certbot + lets-encrypt
 
+https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04-es
+
 1. `sudo add-apt-repository ppa:certbot/certbot` installar cerbot
 
 2. `sudo apt install python-certbot-apache` modulo python para apache de certbot
@@ -436,5 +442,39 @@ certificado SSL contiene:
 
 6. `sudo certbot renew --dry-run`  verificar la renovación automática de Certbot
 
+7. **ESTE PASO NO SE SI ES EL (7 o 4,5) ** MODIFICARL EL FICHERO **subd.dominio.com-le-ssl.conf** con los valores, si no funciona correr el paso 5 y 6
+
+   ```python
+   <VirtualHost *:443>
+           
+           ServerAdmin programacion.grupohorizontes@gmail.com
+           DocumentRoot /var/www/html/site-ejemplo/public/
+           DirectoryIndex /index.php
+   
+           <Directory /var/www/html/site-ejemplo/public/>
+           AllowOverride None
+           Order Allow,Deny
+           Allow from All
+           FallbackResource /index.php
+           </Directory>
+   
+   
+           # ServerAdmin programacion.grupohorizontes@gmail.com
+   #       DocumentRoot /var/www/html/ringetlbackend/
+   #       ServerName app.solyag.online
+   #       ServerAlias www.app.solyag.online
+   
+           # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+           # error, crit, alert, emerg.
+           # It is also possible to configure the loglevel for particular
+           # modules, e.g.
+           #LogLevel info ssl:warn
+   ```
+
+sudo certbot --apache -d app.solyag.online -d www.app.solyag.online
+
+sudo certbot --apache -d app.solyag.online -d www.app.solyag.online
 
 
+
+sudo certbot --apache -d miacargo.do -d www.miacargo.do
