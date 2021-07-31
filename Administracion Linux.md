@@ -413,6 +413,75 @@ el enlace simbolico entre estos directorios se hacen mnualmente
     wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh 
     ```
 
+## LAMP AWS - MIACARGO
+
+> Linux Apache MySQL PHP
+
+1. sudo apt-get update
+2. install Apache `sudo apt-get install apache2`
+3. instalar MySQL `sudo apt-get instal mysql-server`
+4. instalar php `sudo apt-get install php7.4`
+5. extenciones php
+   - sudo pt-get install php-mbstring
+   - sudo apt-get install php-xml
+   - sudo systemctl restart apache2
+6. install composer 
+
+   - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+   - php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+   - php composer-setup.php
+   - php -r "unlink('composer-setup.php');"
+   - mv composer.phar /usr/local/bin/composer
+
+
+5. instalar modulo de apache para php `sudo apt-get install libapache2-mod-php7.0`
+
+6. instalar modulo php para mysql `sudo apt-get install php7.0-mysql`  
+
+7. copiar proyecto a la direccion **/var/www/proyect**
+
+8. configurar los ficheros de conexión a base datos
+
+9. instalar ssl pasos abajo
+
+10. configurar miacargo.-let-config
+
+    ```xml
+    <IfModule mod_ssl.c>
+    <VirtualHost *:443> 
+    
+            ServerAdmin programacion.horizontes@gmail.com
+            ServerName miacargo.do
+            ServerAlias www.miacargo.do
+            DocumentRoot /var/www/miacargo/public/
+    
+            <Directory /var/www/html/miacargo/public/>
+             AllowOverride None
+             Order Allow,Deny
+             Allow from All
+             FallbackResource /index.php
+             Require all granted
+             RewriteEngine on
+             RewriteCond %{HTTP:Authorization} ^(.*)
+             RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+             </Directory>
+             
+            # error, crit, alert, emerg.
+    
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+            # For most configuration files from conf-available/, which are
+    
+    Include /etc/letsencrypt/options-ssl-apache.conf
+    SSLCertificateFile /etc/letsencrypt/live/miacargo.do/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/miacargo.do/privkey.pem
+    </VirtualHost>
+    </IfModule>
+    ```
+
+    
+
 ## Certificados SSL
 
 > certificado que autentica la identidad de un sitio web y cifra con tecnología SSL la información al servidor
@@ -428,21 +497,23 @@ certificado SSL contiene:
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04-es
 
-1. `sudo add-apt-repository ppa:certbot/certbot` installar cerbot
+2. `sudo apt install certbot python3-certbot-apache`  installar cerbot y modulo python para apache de certbot
 
-2. `sudo apt install python-certbot-apache` modulo python para apache de certbot
+3. **cd /etc/apache2/sites-available/** configurar el dominio|s, como vimos en la sesión de apache con todos los pasos `sudo nano /etc/apache2/sites-available/your_domain.conf`
 
-3. **cd /etc/apache2/sites-available/** configurar el dominio|s, como vimos en la sesión de apache con todos los pasos
+3. `sudo apache2ctl configtest`  probar la configuraciones
 
-4. opcional (sudo ufw status) para verificar firewall `sudo ufw allow 'Apache Full'`  `sudo ufw delete allow 'Apache'`
+4. `sudo systemctl reload apache2` reload apache2
 
-5. `sudo certbot --apache -d nuevodominio.com -d www.nuevodominio.com`
+5. opcional (sudo ufw status) para verificar firewall `sudo ufw allow 'Apache Full'`  `sudo ufw delete allow 'Apache'`
+
+6. `sudo certbot --apache -d nuevodominio.com -d www.nuevodominio.com`
 
    `sudo certbot --apache -d premium.nuevodominio.com`  obtener los certificados SSL precionar 2 si deseamos la redirecion de www a no-www
 
-6. `sudo certbot renew --dry-run`  verificar la renovación automática de Certbot
+7. `sudo certbot renew --dry-run`  verificar la renovación automática de Certbot
 
-7. **ESTE PASO NO SE SI ES EL (7 o 4,5) ** MODIFICARL EL FICHERO **subd.dominio.com-le-ssl.conf** con los valores, si no funciona correr el paso 5 y 6
+8. **ESTE PASO NO SE SI ES EL (7 o 4,5) ** MODIFICARL EL FICHERO **subd.dominio.com-le-ssl.conf** con los valores, si no funciona correr el paso 5 y 6
 
    ```python
    <VirtualHost *:443>
@@ -456,6 +527,12 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s
            Order Allow,Deny
            Allow from All
            FallbackResource /index.php
+           
+           # Symfony para HTTPS
+            Require all granted
+            RewriteEngine on
+            RewriteCond %{HTTP:Authorization} ^(.*)
+            RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
            </Directory>
    
    
@@ -485,6 +562,7 @@ adicionar las lineas al final de la configuracion del **/etc/apache2/sites-aviab
             AllowOverride None
             Order allow,deny
             Allow from all
+            FallbackResource /index.php
             Require all granted
             RewriteEngine on
             RewriteCond %{HTTP:Authorization} ^(.*)
@@ -495,3 +573,4 @@ adicionar las lineas al final de la configuracion del **/etc/apache2/sites-aviab
 service apache2 reload
 
 sudo certbot --apache -d miacargo.do -d www.miacargo.do
+
