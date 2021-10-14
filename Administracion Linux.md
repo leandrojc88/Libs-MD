@@ -59,6 +59,7 @@
 - `sudo apt-get install tree` 
   - `tree` muestra en el directorio que se este el listado de subdirectorios y archivos en formato de arbol
 - `grep -R "descrip" {dir}` buscador en {dir} la "descrip"
+- `sudo update-alternatives --config editor` establecer editor por defecto, seleccionado el numero que este
 
 ## estructura de directorios Linux
 
@@ -409,42 +410,99 @@ el enlace simbolico entre estos directorios se hacen mnualmente
 
 13. `service apache2 restart`
 
-14. ```
-    wget --no-check-certificate https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | sh 
-    ```
 
 ## LAMP AWS - MIACARGO
 
 > Linux Apache MySQL PHP
 
 1. sudo apt-get update
+
 2. install Apache `sudo apt-get install apache2`
-3. instalar MySQL `sudo apt-get instal mysql-server`
+
+3. instalar MySQL `sudo apt-get install mysql-server`
+
 4. instalar php `sudo apt-get install php7.4`
+
 5. extenciones php
-   - sudo pt-get install php-mbstring
+   - sudo apt-get install php-mbstring
    - sudo apt-get install php-xml
    - sudo systemctl restart apache2
-6. install composer 
+   - sudo apt-get install php7.4-curl
+   
+6. sudo service apache2 restart
 
-   - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-   - php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-   - php composer-setup.php
-   - php -r "unlink('composer-setup.php');"
-   - mv composer.phar /usr/local/bin/composer
+7. install composer 
+
+   - ejecutar estos 4 comandos!
+
+     ```
+     - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+     - php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+     - php composer-setup.php
+     - sudo php -r "unlink('composer-setup.php');"
+     ```
+
+   - sudo mv composer.phar /usr/local/bin/composer
 
 
-5. instalar modulo de apache para php `sudo apt-get install libapache2-mod-php7.0`
+5. instalar modulo de apache para php `sudo apt-get install libapache2-mod-php7.4`
 
-6. instalar modulo php para mysql `sudo apt-get install php7.0-mysql`  
+6. base de datos instalar
 
-7. copiar proyecto a la direccion **/var/www/proyect**
+   - MYSQL 
+     - instalar modulo php para mysql `sudo apt-get install php7.4-mysql`  
 
-8. configurar los ficheros de conexión a base datos
+   - POSTGRES 
+     - `sudo apt install php7.0-pgsql` 
+     - `sudo phpenmod pdo_pgsql`
 
-9. instalar ssl pasos abajo
+7. `sudo apt-get update` - para actualizar todos los paquetes
 
-10. configurar miacargo.-let-config
+8. copiar proyecto a la direccion **/var/www/proyect**
+
+9. composer install
+
+10. configurar los ficheros de conexión a base datos
+
+11. comandos de base de datos
+
+    - `php bin/console d:d:c`
+    - `php bin/console d:s:u --force`
+    - `php bin/console d:f:l`
+
+12. cofiguracion :80
+
+    ```xml
+    <VirtualHost *:80>
+    
+            ServerAdmin leandrojc88@gmail.com
+            DocumentRoot /var/www/api-miacargo/public
+            DirectoryIndex /index.php
+            <Directory /var/www/api-miacargo/public>
+                    AllowOverride None
+                    Order Allow,Deny
+                    Allow from All
+    
+                    FallbackResource /index.php
+            </Directory>
+    	
+        	# permite ver los errores de symfony !
+            <Directory /var/www/api-miacargo/public/bundles>
+                    DirectoryIndex enabled
+                    FallbackResource enabled
+            </Directory>
+    
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+    </VirtualHost>
+    ```
+
+    
+
+13. instalar ssl pasos abajo
+
+14. configurar miacargo.-let-config
 
     ```xml
     <IfModule mod_ssl.c>
@@ -480,7 +538,7 @@ el enlace simbolico entre estos directorios se hacen mnualmente
     </IfModule>
     ```
 
-    
+15. sudo service apache2 restart
 
 ## Certificados SSL
 

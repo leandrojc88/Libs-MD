@@ -287,7 +287,7 @@ class EscuelaDigital {
 
 public , private, protected
 
-se puede reducir la definición de la encapsulación de los atributos de la clase, integrando el modificador pribate en los parametros del contructor, de esta forma TS asumira que los parametros son propiedades de la clase y los mapeara como tal 
+se puede reducir la definición de la encapsulación de los atributos de la clase, integrando el modificador private en los parametros del contructor, de esta forma TS asumira que los parametros son propiedades de la clase y los mapeara como tal 
 
 ```typescript
 // shorthand de la encapsulacion
