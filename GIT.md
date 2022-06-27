@@ -304,11 +304,12 @@ Where `proxyuser` and `proxypwd` are your credentials, and `proxy.server.com:808
 
 - `git remote` enlaza **repo** remoto al local 
   	
-	- `git remote add origin https://github.com/leandrojc88/SwitchLabel` enlaza
-
+	
+- `git remote add origin https://github.com/leandrojc88/SwitchLabel` enlaza
 	- `git remote -v` muestra q se enlazo el repo
 	- `git remote remove origin` para eliminar el enlace del repo origin del local
-
+- `git remote set-url origin NUEVA_URL` cambiar la url del remote de git
+  
 - `git fetch` (no usar) descarga los ficheros del repo remoto(origin) al local asignandole la rama q va a traer(master)
 
 		git fetch origin master
@@ -332,8 +333,10 @@ Where `proxyuser` and `proxypwd` are your credentials, and `proxy.server.com:808
   -  `tail cd id_rsa.pub` y copiar todo el hash q retorne
 			
 		
-	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDnVhMlwsFWKxbpoX42f7bUXOzUppkhYQF8+aFdjhz2cc2yBPF68g+ZucjCaIU7oQnteSCXqnUgqh0Wy7Bg22/3PenkWwzZr+pjrMHtc/toWnUgA2q24m3hyGW7ANe0OTtOPLP80PLEoXsBCb34mb9WREemicUVX4sAXBurzaXdN/ipRUuO5qKR+5+6TgJkBLf6PaDFwmUVNlSbxbFhIAwxMapt1EE0Ms59D0CcwroCj1GMuFOSLHdV9ocIrUzzzy8DpIu6vM6CSRzPdxKNRe4E7ZrW7KkMrZOVKmG97B9t768v18O+iLcglCA09B7KyHDk0UV9Kz3rjx1y1PX8HID LEO@DESKTOP-C5E2ESP
+	
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDnVhMlwsFWKxbpoX42f7bUXOzUppkhYQF8+aFdjhz2cc2yBPF68g+ZucjCaIU7oQnteSCXqnUgqh0Wy7Bg22/3PenkWwzZr+pjrMHtc/toWnUgA2q24m3hyGW7ANe0OTtOPLP80PLEoXsBCb34mb9WREemicUVX4sAXBurzaXdN/ipRUuO5qKR+5+6TgJkBLf6PaDFwmUVNlSbxbFhIAwxMapt1EE0Ms59D0CcwroCj1GMuFOSLHdV9ocIrUzzzy8DpIu6vM6CSRzPdxKNRe4E7ZrW7KkMrZOVKmG97B9t768v18O+iLcglCA09B7KyHDk0UV9Kz3rjx1y1PX8HID LEO@DESKTOP-C5E2ESP
   	
+  
   - copiar el hash y pegarlo en Github / settings / SSH and GpG keys / crerar nuevos SSH una por cada pcs
 
  ## Interfas

@@ -10,13 +10,13 @@
 -  Trabajo en equipo
 -  Se crean PRODUCTOS FUNCIONALES desde el principio (Por cada Sprint)
 
-![1579397313139](\Scrum\sprint.png)
+![1579397313139](Scrum\sprint.png)
 
 ## Roles de SCRUM
 
 > Cada miembro tiene una misión, En SCRUM es importante mantener los procesos
 
-![1579397699923](\Scrum\roles.png)
+![1579397699923](Scrum\roles.png)
 
 **Dueño de Producto:** Es la “voz” del cliente, Su rol es aportar las ideas del producto final, que vela por el proyecto, aporta ideas al producto, genera un Backlog de ideas 
 
@@ -30,7 +30,7 @@
 
 >  Se trabaja siempre en ciclos cortos, Al final de cada ciclo hay un producto funcional
 
-![1579399608412](F:\Documentacion\Web Develop\_Notes Cursos\Libs-MD\Scrum\funcionamiento.png)
+![1579399608412](Scrum\funcionamiento.png)
 
 ### Backlog o Bitácora
 
@@ -45,7 +45,7 @@ Sólo el dueño de producto puede agregar o eliminar elementos, debemos seleccio
 
 Un Sprint es el ciclo de desarrollo del producto, Arranca con la selección de items de la Bitácora (se asignan a los diferentes miembros del quipo las tareas), Siempre tiene como resultado un producto funcional, potencialmente entregable.
 
-![1579401668058](\Scrum\sprint2.png)
+![1579401668058](Scrum\sprint2.png)
 
 ### El Scrum diario
 
@@ -97,11 +97,11 @@ Cada ciclo da como resultado un producto de mejor calidad, Recuerda siempre eleg
 
 Backlog
 
-![1579404427771](\Scrum\backlog.png)
+![1579404427771](Scrum\backlog.png)
 
 Sprint
 
-![1579404388158](\Scrum\sprint-ej.png)
+![1579404388158](Scrum\sprint-ej.png)
 
 Burndown chart
 

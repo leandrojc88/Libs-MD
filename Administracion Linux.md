@@ -60,6 +60,12 @@
   - `tree` muestra en el directorio que se este el listado de subdirectorios y archivos en formato de arbol
 - `grep -R "descrip" {dir}` buscador en {dir} la "descrip"
 - `sudo update-alternatives --config editor` establecer editor por defecto, seleccionado el numero que este
+- Cambair nombre parpeta y archivo con mv (mover al mismo directorio con otro nombre)
+  - mv -f carpeta /tmp #Mover carpeta a /tmp y sobreescribe en caso de que ya exista
+- Mover carpeta en Ubuntu
+  - mv carpeta /tmp => #Mover carpeta a /tmp
+  - mv -n carpeta /tmp => #Mover carpeta a /tmp sin sobreescribir en caso de existir en la carpeta de destino
+  - mv -f carpeta /tmp => #Mover carpeta a /tmp y sobreescribe en caso de que ya exista
 
 ## estructura de directorios Linux
 
@@ -415,23 +421,32 @@ el enlace simbolico entre estos directorios se hacen mnualmente
 
 > Linux Apache MySQL PHP
 
-1. sudo apt-get update
+1. ***Activar*** las reglas del grupo de seguridad para permitir acceso a http y https
 
-2. install Apache `sudo apt-get install apache2`
+   [How to Install Apache 2 on AWS EC2 Instance Ubuntu 20.04 - CloudKatha](https://cloudkatha.com/how-to-install-apache-2-on-aws-ec2-instance-ubuntu-20-04/)
 
-3. instalar MySQL `sudo apt-get install mysql-server`
+   ![image-20220225185518718](Administracion Linux\image-20220225185518718.png)
 
-4. instalar php `sudo apt-get install php7.4`
+2. sudo apt-get update
 
-5. extenciones php
+3. install Apache `sudo apt-get install apache2`
+
+4. instalar MySQL `sudo apt-get install mysql-server`
+
+5. instalar php `sudo apt-get install php7.4`
+
+6. extenciones 
+
+   taodas en una -- php  sudo apt-get install php-mbstring php-xml apache2 php7.4-curl
+
    - sudo apt-get install php-mbstring
    - sudo apt-get install php-xml
    - sudo systemctl restart apache2
    - sudo apt-get install php7.4-curl
-   
-6. sudo service apache2 restart
 
-7. install composer 
+7. sudo service apache2 restart
+
+8. install composer 
 
    - ejecutar estos 4 comandos!
 
@@ -453,7 +468,7 @@ el enlace simbolico entre estos directorios se hacen mnualmente
      - instalar modulo php para mysql `sudo apt-get install php7.4-mysql`  
 
    - POSTGRES 
-     - `sudo apt install php7.0-pgsql` 
+     - `sudo apt install php7.4-pgsql` 
      - `sudo phpenmod pdo_pgsql`
 
 7. `sudo apt-get update` - para actualizar todos los paquetes
@@ -565,7 +580,7 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s
 
 5. opcional (sudo ufw status) para verificar firewall `sudo ufw allow 'Apache Full'`  `sudo ufw delete allow 'Apache'`
 
-6. `sudo certbot --apache -d nuevodominio.com -d www.nuevodominio.com`
+6. `sudo certbot --apache -d nuevodominio.com`
 
    `sudo certbot --apache -d premium.nuevodominio.com`  obtener los certificados SSL precionar 2 si deseamos la redirecion de www a no-www
 
