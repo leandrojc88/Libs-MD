@@ -1,4 +1,4 @@
-# Symfony 5
+# Comantos Utilies
 
 ### crear base de datos
 
@@ -18,3 +18,5 @@
 ### generar Formularios
 
 1. crear un formulario `php bin/console make:form` - se le especifica el nombre y la entidad a la q se relaciona
+
+# Testing
